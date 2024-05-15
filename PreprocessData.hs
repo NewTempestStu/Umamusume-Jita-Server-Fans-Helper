@@ -1,4 +1,5 @@
 module PreprocessData where
+import NormalizeKey (normalizeKey)
 import qualified Data.Map as Map
 import Data.Maybe (mapMaybe)
 import System.IO
@@ -6,16 +7,6 @@ import Control.Exception (catch, SomeException)
 import Data.Char (toLower)
 
 type DataMap = Map.Map String Int
-
--- Normalize characters in the string
-normalizeKey :: String -> String
-normalizeKey = filter (/= ' ') . map normalizeChar . map toLower
-  where
-    normalizeChar '。' = 'o'  -- Convert ideographic full stop to 'o'
-    normalizeChar 'O'  = 'o'  -- Convert 'O' to 'o'
-    normalizeChar 'o'  = 'o'  -- Ensure 'o' remains 'o'
-    normalizeChar '姗' = '娜'
-    normalizeChar c    = c
 
 -- Function to read data from a file and convert it to a Map, normalizing keys and removing exact duplicates
 readData :: FilePath -> IO DataMap

@@ -2,7 +2,7 @@
 
 # Variables
 GHC = ghc
-SRC = Main.hs PreprocessData.hs CompareWeeks.hs
+SRC = Main.hs PreprocessData.hs CompareWeeks.hs NormalizeKey.hs
 EXEC = main
 
 # Default target
